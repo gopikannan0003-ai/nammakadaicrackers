@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pricelist | Namma Kadai</title>
+<style>
+:root{--yellow:#fdb913;--ink:#14122b;--green:#0a7a2f;--red:#d32020}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:system-ui,Arial,sans-serif;color:#fff;padding-bottom:90px;
+background:
+radial-gradient(circle at 15% 8%,rgba(255,90,60,.35),transparent 28%),
+radial-gradient(circle at 88% 14%,rgba(253,185,19,.30),transparent 26%),
+radial-gradient(circle at 78% 55%,rgba(168,85,247,.30),transparent 30%),
+radial-gradient(circle at 10% 78%,rgba(34,197,94,.22),transparent 28%),
+radial-gradient(circle at 92% 92%,rgba(59,130,246,.30),transparent 30%),
+radial-gradient(1.5px 1.5px at 20px 30px,#fff,transparent),
+radial-gradient(1.5px 1.5px at 90px 80px,#ffe9a8,transparent),
+linear-gradient(170deg,#0b0a2a,#1b0f46 55%,#2a0f3a);
+background-size:auto,auto,auto,auto,auto,130px 130px,130px 130px,auto}
+
+.hero{text-align:center;padding:20px 16px 6px}
+.hero h1{margin:0;font-size:1.35rem;line-height:1.25;text-shadow:0 0 18px rgba(253,185,19,.7)}
+.hero span{display:inline-block;margin-top:8px;background:var(--yellow);color:#111;font-weight:800;padding:5px 14px;border-radius:99px;font-size:.9rem}
+
+.cust,.bar{margin:12px 14px;padding:14px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px)}
+.cust{display:flex;flex-direction:column;gap:8px}
+.cust input,.bar select,.bar input{padding:12px;border-radius:9px;border:2px solid #7c8cff;font-size:1rem;width:100%;min-width:0}
+
+/* ADDRESS BOX */
+#ca{
+  padding:12px;
+  border-radius:9px;
+  border:2px solid #7c8cff;
+  font-size:1rem;
+  width:100%;
+  min-width:0;
+  font-family:system-ui,Arial,sans-serif;
+  resize:vertical;
+  min-height:70px;
+}
+
+.cust .err{color:#ffb4b4;font-weight:700;min-height:1.1em}
+
+.bar{display:flex;gap:8px;position:sticky;top:6px;z-index:5;background:rgba(18,12,52,.92)}
+
+h2{margin:22px 14px 8px;font-size:1.05rem;padding:12px;border-radius:10px;text-align:center;letter-spacing:.02em;background:linear-gradient(90deg,#ff6a3d,#fdb913);color:#1a1033;box-shadow:0 4px 18px rgba(253,185,19,.35)}
+
+.item{background:#fff;color:var(--ink);margin:9px 14px;border-radius:12px;padding:10px;display:grid;grid-template-columns:76px 1fr;gap:10px;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+
+.item img{
+  width:76px;
+  height:76px;
+  object-fit:cover;
+  border:3px solid var(--yellow);
+  border-radius:9px;
+  background:#eee;
+  cursor:pointer;
+  transition:transform .2s ease;
+}
+
+.item img:active{
+  transform:scale(.95);
+}
+
+.name{font-weight:800}
+.mrp{color:var(--red);text-decoration:line-through;font-weight:700;margin-right:8px}
+.price{color:var(--green);font-weight:800;font-size:1.05rem}
+.sno{font-size:.75rem;color:#777;font-weight:700}
+
+.row{display:flex;align-items:center;gap:8px;margin-top:6px}
+.row button{width:38px;height:38px;border:0;border-radius:8px;background:var(--yellow);font-size:1.4rem;font-weight:800;color:var(--ink)}
+.row input{width:56px;height:38px;text-align:center;font-size:1rem;border:1px solid #bbb;border-radius:8px}
+.line{margin-left:auto;font-weight:800}
+
+#sum{position:fixed;left:0;right:0;bottom:0;background:#1b1250;border-top:2px solid var(--yellow);padding:10px 14px;display:flex;align-items:center;gap:10px;z-index:8}
+#sum .t{flex:1;font-size:.85rem;line-height:1.35}
+#sum b{font-size:1.1rem;color:var(--yellow)}
+.go{background:#25d366;color:#000;border:0;border-radius:10px;padding:12px 14px;font-weight:800;font-size:.95rem}
+
+
+/* ===== PRODUCT IMAGE ZOOM ===== */
+
+#imgZoom{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(0,0,0,.88);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+#imgZoom.show{
+  display:flex;
+}
+
+#zoomedImg{
+  width:300px;
+  height:300px;
+  max-width:80vw;
+  max-height:60vh;
+  object-fit:contain;
+  border-radius:12px;
+  box-shadow:0 0 25px rgba(255,255,255,.25);
+}
+
+#closeZoom{
+  position:absolute;
+  top:15px;
+  right:18px;
+  width:44px;
+  height:44px;
+  border:0;
+  border-radius:50%;
+  background:#fff;
+  color:#111;
+  font-size:28px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+  <h1>Best Quality Crackers @ Wholesale Price</h1>
+  <span>80% OFF on all crackers</span>
+</div>
+
+<div class="cust">
+  <b>Step 1: Your details</b>
+
+  <input id="cn"
+         autocomplete="name"
+         placeholder="Customer name">
+
+  <input id="cp"
+         type="tel"
+         inputmode="numeric"
+         maxlength="10"
+         autocomplete="tel"
+         placeholder="Mobile number (10 digit)">
+
+  <!-- ADDRESS BOX ADDED -->
+  <textarea id="ca"
+            autocomplete="street-address"
+            placeholder="Enter your address"></textarea>
+
+  <div class="err" id="err"></div>
+
+  <b>Step 2: Select crackers</b>
+</div>
+
+<div class="bar">
+  <select id="cat"></select>
+  <input id="q" type="search" placeholder="Search crackers">
+</div>
+
+<div id="list"></div>
+
+
+<!-- PRODUCT IMAGE ZOOM POPUP -->
+
+<div id="imgZoom" onclick="closeZoom(event)">
+  <button id="closeZoom" onclick="closeZoom()">×</button>
+  <img id="zoomedImg" src="" alt="Product Image">
+</div>
+
+
+<div id="sum">
+  <div class="t">
+    Items: <b id="cnt">0</b><br>
+    MRP ₹<span id="mrp">0</span>
+    &nbsp;
+    You pay <b>₹<span id="tot">0</span></b>
+  </div>
+
+  <button class="go" id="order">
+    Order on WhatsApp
+  </button>
+</div>
+
+<script src="nav.js"></script>
+
+<script>
+
+/* ===== EDIT THIS SECTION ===== */
+const WHATSAPP = "919176565055";   // shop number: 91 + 10 digits
+
+/* Photos: put images/1.jpg, images/2.jpg ... (S.NO = file name). Missing photo shows a blank box. */
+const IMG_PATH = "images/";
+const IMG_EXT = ".jpg";
+
+/* Format: Product name | MRP | Offer rate */
+const DATA = {
+
+"Sound Crackers":`2 3/4'' Kuruvi|40|8
+3 1/2'' Lakshmi|75|15
+2 Sound Cracker|100|20
+4'' Deluxe Lakshmi|165|33
+4'' Gold Lakshmi|175|35
+5'' Kumki|215|43
+5'' Bahubali|225|45
+6'' Jallikattu|250|50`,
+
+"Bombs & Adiyal":`250 g Adiyal|250|50
+500 g Adiyal|500|100
+1 Kg Adiyal|1000|200
+Hydro Bomb|350|70
+King of King|500|100
+Vibrate Bomb|750|150
+DTS Digital Bomb|900|180`,
+
+"Ground Chakkar & Wheels":`Ground Chakkar Big (10 Pcs)|300|60
+Disco Wheel|450|90
+Ground Chakkar Deluxe|700|140
+Ground Chakkar Spinner Special|800|160
+Wire Chakkar (10 Pcs)|950|190
+Whistling Wheel (Ayyan)|1250|250`,
+
+"Flower Pots":`Flower Pots Small|250|50
+Flower Pots Big|450|90
+Flower Pots Special|600|120
+Flower Pots Asoka|700|140
+Flower Pots Super Deluxe|625|125`,
+
+"Colourkoti & Tri Colour":`Colourkoti|1200|240
+Colourkoti Gold Deluxe (10 Pcs)|1500|300
+Chottu Tri Color|1125|225
+Bale Bale Tri Color|1400|280
+Tri Colour Maxi|1500|300`,
+
+"Twinkling Star":`1 1/2'' Twinkling Star|150|30
+4'' Twinkling Star|375|75`,
+
+"Bijili & Wala":`Red Bijili (50 pcs)|100|20
+Red Bijili (100 pcs)|200|40
+28 Giant|150|30
+1K Wala|1000|200
+2K Wala|2000|400
+5K Wala|5000|1000
+10K Wala|10000|2000`,
+
+"Rockets":`Baby Rocket|350|70
+Whistling Rocket|900|180
+2 Sound Rocket|1000|200`,
+
+"Sparklers":`7 cm Electric|45|9
+7 cm Crackling|50|10
+7 cm Green|55|11
+7 cm Red|65|13
+10 cm Electric|90|18
+10 cm Crackling|95|19
+10 cm Green|100|20
+10 cm Red|110|22
+15 cm Electric|230|46
+15 cm Crackling|240|48
+15 cm Green|250|50
+15 cm Red|260|52
+30 cm Electric|240|48
+30 cm Crackling|250|50
+30 cm Green|260|52
+30 cm Red|270|54
+50 cm Electric|800|160
+50 cm Crackling|900|180`,
+
+"Novelties":`Snake Tablet|25|5
+Electric Stone|50|10
+Kitkat|175|35
+Chitput|350|70
+Butterfly|450|90
+Bambaram|500|100
+Big Fish|600|120
+Helicopter|500|100
+Drone|600|120
+Photo Flash|350|70
+Candy Crush|650|130`,
+
+"Fountains & Showers":`Golden Rain|550|110
+Peacock Shower|900|180
+Bada Peacock Shower|1600|320
+Siren Mini|750|150
+Siren Big|1000|200
+Color Smoke|750|150
+Emu Egg (2 Pcs)|1050|210
+Cylinder (2 Pcs)|1250|250
+Money In the Bank|300|60
+Scooby Doo Shower|400|80
+Selfie Stick|750|150
+Fruits|750|150
+Shower (5 Pcs)|600|120
+Asrafi Gold (5 Pcs)|650|130
+Astro Boy (5 Pcs)|750|150
+Magic Gold (5 Pcs)|650|130
+4x4 Wheel|800|160
+Dup Tip (5 Pcs)|800|160
+Bubbler Multi Color (5 Pcs)|950|190
+Magic Mystery (Ayyan) (10 Pcs)|1500|300
+Pop Corn - Crackling Pencil (2 Pcs)|1000|200
+Baby Corn - H2O - Cold Pencil|1000|200
+Icone (2 Pcs)|1250|250
+Flora (5 Pcs)|1000|200
+Sky Force (5 Pcs)|900|180
+Spider (5 Pcs)|900|180
+Xmas|875|175`,
+
+"Big Fountains & Tins":`5'' Fountain Crackling|1000|200
+5'' Fountain Snow (Cold Pyro)|1100|220
+6'' Chennai Super Kings|1250|250
+Tin Green Grapes|500|100
+Tin Love|500|100
+Tin Unlimited Joy|500|100`,
+
+"Fancy (Aerial)":`Chotta Fancy|250|50
+2'' Fancy|550|110
+2'' Fancy (3 Pcs)|1650|330
+3 1/2'' Fancy|1750|350
+3 1/2'' Fancy (2 Pcs)|3400|680
+3 1/2'' Nayagara|1800|360
+4'' Wow Star Pink|3000|600
+4'' Wow Star Purple|3000|600
+4'' 7 Wonder|2500|500
+4'' 7 Golden Eye|2500|500`,
+
+"Multi Shots":`7 Shots|650|130
+12 Shots Rider|900|180
+15 Shots Multi Color|1125|225
+25 Shots Rider|1500|300
+30 Shots|2250|450
+30 Shots Magic Balls|2550|510
+60 Shots|4500|900
+120 Shots|9000|1800
+240 Shots|18000|3600`,
+
+"Gift Boxes":`20 Items Gift Box|360|360
+25 Items Gift Box|450|450
+30 Items Gift Box|550|550
+40 Items Gift Box|700|700
+50 Items Gift Box|875|875
+60 Items Gift Box|1030|1030`
+};
+
+/* ============================= */
+
+const PRODUCTS = [];
+
+Object.keys(DATA).forEach(cat => DATA[cat].split("\n").forEach(l => {
+
+  const [n,m,o] = l.split("|");
+
+  PRODUCTS.push({
+    cat,
+    name:n.replace(/''/g,'"'),
+    mrp:+m,
+    offer:+o,
+    no:PRODUCTS.length+1
+  });
+
+}));
+
+
+const BLANK = "data:image/svg+xml;utf8," + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="76" height="76"><rect width="76" height="76" fill="#eef0f4"/><text x="38" y="42" font-family="Arial" font-size="11" fill="#9aa3b2" text-anchor="middle">Photo</text></svg>'
+);
+
+
+const qty = {},
+$ = id => document.getElementById(id),
+fmt = n => Number.isInteger(n) ? n : n.toFixed(2);
+
+
+const cats = Object.keys(DATA);
+
+
+$("cat").innerHTML =
+  '<option value="">All</option>' +
+  cats.map(c => `<option>${c}</option>`).join("");
+
+
+function render(){
+
+  const c = $("cat").value;
+  const s = $("q").value.trim().toLowerCase();
+
+  let html = "";
+
+  cats.forEach(cat => {
+
+    if (c && c !== cat) return;
+
+    const items = PRODUCTS
+      .map((p,i)=>({p,i}))
+      .filter(o =>
+        o.p.cat===cat &&
+        o.p.name.toLowerCase().includes(s)
+      );
+
+    if (!items.length) return;
+
+    html += `<h2>${cat.toUpperCase()}</h2>`;
+
+    items.forEach(({p,i}) => {
+
+      const off = p.offer < p.mrp;
+
+      html += `<div class="item">
+
+      <img
+        src="${IMG_PATH+p.no+IMG_EXT}"
+        alt="${p.name}"
+        loading="lazy"
+        onclick="openZoom(this.src)"
+        onerror="this.onerror=null;this.src=BLANK">
+
+      <div>
+
+      <div class="name">${p.name}</div>
+
+      <div>
+        <span class="sno">#${p.no}</span>
+        ${off ? `<span class="mrp">₹${p.mrp}</span>` : ""}
+        <span class="price">₹${fmt(p.offer)}</span>
+      </div>
+
+      <div class="row">
+
+        <button
+          onclick="chg(${i},-1)"
+          aria-label="Less">−</button>
+
+        <input
+          type="number"
+          min="0"
+          inputmode="numeric"
+          id="q${i}"
+          value="${qty[i]||0}"
+          onchange="setq(${i},this.value)">
+
+        <button
+          onclick="chg(${i},1)"
+          aria-label="More">+</button>
+
+        <span
+          class="line"
+          id="l${i}">
+          ₹${fmt((qty[i]||0)*p.offer)}
+        </span>
+
+      </div>
+
+      </div>
+      </div>`;
+
+    });
+
+  });
+
+  $("list").innerHTML =
+    html ||
+    '<p style="text-align:center;padding:30px">No crackers found.</p>';
+}
+
+
+function setq(i,v){
+
+  qty[i] = Math.max(0, parseInt(v)||0);
+
+  upd(i);
+}
+
+
+function chg(i,d){
+
+  setq(i,(qty[i]||0)+d);
+}
+
+
+function upd(i){
+
+  const e = $("q"+i);
+
+  if (e)
+    e.value = qty[i]||0;
+
+  const l = $("l"+i);
+
+  if (l)
+    l.textContent =
+      "₹" + fmt((qty[i]||0)*PRODUCTS[i].offer);
+
+  let n=0,m=0,t=0;
+
+  PRODUCTS.forEach((p,k)=>{
+
+    const q=qty[k]||0;
+
+    if(q){
+
+      n++;
+
+      m+=q*p.mrp;
+
+      t+=q*p.offer;
+
+    }
+
+  });
+
+  $("cnt").textContent=n;
+  $("mrp").textContent=fmt(m);
+  $("tot").textContent=fmt(t);
+}
+
+
+$("cat").onchange =
+$("q").oninput =
+render;
+
+
+/* ===== PRODUCT IMAGE ZOOM ===== */
+
+function openZoom(src){
+
+  if(src === BLANK) return;
+
+  $("zoomedImg").src = src;
+
+  $("imgZoom").classList.add("show");
+}
+
+
+function closeZoom(e){
+
+  if(e && e.target.id !== "imgZoom")
+    return;
+
+  $("imgZoom").classList.remove("show");
+
+  $("zoomedImg").src = "";
+}
+
+
+document.addEventListener("keydown", e => {
+
+  if(e.key === "Escape"){
+
+    $("imgZoom").classList.remove("show");
+
+    $("zoomedImg").src = "";
+
+  }
+
+});
+
+
+/* ===== WHATSAPP ORDER ===== */
+
+$("order").onclick = () => {
+
+  const name = $("cn").value.trim();
+
+  const ph =
+    $("cp").value.replace(/\D/g,"");
+
+  /* ADDRESS */
+  const address = $("ca").value.trim();
+
+  const err = m => {
+
+    $("err").textContent = m;
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  };
+
+
+  if (name.length < 2) {
+
+    err("Please enter your name.");
+
+    $("cn").focus();
+
+    return;
+
+  }
+
+
+  if (!/^[6-9]\d{9}$/.test(ph)) {
+
+    err("Enter a valid 10 digit mobile number.");
+
+    $("cp").focus();
+
+    return;
+
+  }
+
+
+  if (address.length < 5) {
+
+    err("Please enter your address.");
+
+    $("ca").focus();
+
+    return;
+
+  }
+
+
+  if (!PRODUCTS.some((p,i)=>qty[i]>0)) {
+
+    err("Please select at least one product.");
+
+    return;
+
+  }
+
+
+  $("err").textContent = "";
+
+  let lines=[],
+  m=0,
+  t=0,
+  k=0;
+
+
+  PRODUCTS.forEach((p,i)=>{
+
+    const q=qty[i]||0;
+
+    if(!q) return;
+
+    const a=q*p.offer;
+
+    m+=q*p.mrp;
+
+    t+=a;
+
+    k++;
+
+    lines.push(
+      `${k}. ${p.name} - ${q} x ₹${fmt(p.offer)} = ₹${fmt(a)}`
+    );
+
+  });
+
+
+  const msg =
+`*New Order - Namma Kadai*
+
+Name: ${name}
+Mobile: ${ph}
+Address: ${address}
+
+*Products*
+${lines.join("\n")}
+
+MRP Total: ₹${fmt(m)}
+*Total to Pay: ₹${fmt(t)}*`;
+
+
+  const num =
+    WHATSAPP.replace(/\D/g,"");
+
+
+  window.location.href =
+    `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
+
+};
+
+
+render();
+
+</script>
+
+</body>
+</html>

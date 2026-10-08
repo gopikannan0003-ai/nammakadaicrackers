@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Safety Tips | Crackers Store</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .safety-page {
+            min-height: 100vh;
+            padding: 150px 5% 100px;
+
+            background:
+                linear-gradient(
+                    rgba(12,3,3,0.95),
+                    rgba(20,5,6,0.98)
+                ),
+                url("images/background.jpg")
+                center/cover fixed;
+        }
+
+        .safety-header {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .safety-header span {
+            color: #d4af37;
+            font-size: 11px;
+            letter-spacing: 4px;
+        }
+
+        .safety-header h1 {
+            margin-top: 18px;
+            font-size: clamp(42px,6vw,70px);
+        }
+
+        .safety-header h1 em {
+            color: #d4af37;
+            font-style: normal;
+        }
+
+        .safety-header p {
+            max-width: 680px;
+            margin: 22px auto;
+            color: #aaa;
+            line-height: 1.8;
+        }
+
+        .safety-grid {
+            width: min(1100px,100%);
+            margin: 65px auto 0;
+
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+
+        .safety-card {
+            padding: 32px 25px;
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #210a0b,
+                    #100505
+                );
+
+            border: 1px solid rgba(212,175,55,0.18);
+
+            transition: 0.35s;
+        }
+
+        .safety-card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(212,175,55,0.55);
+        }
+
+        .safety-card-icon {
+            width: 58px;
+            height: 58px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background: rgba(212,175,55,0.1);
+
+            border: 1px solid rgba(212,175,55,0.25);
+
+            font-size: 27px;
+
+            margin-bottom: 20px;
+        }
+
+        .safety-card h3 {
+            margin-bottom: 12px;
+            font-size: 19px;
+        }
+
+        .safety-card p {
+            color: #999;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .important-box {
+            width: min(1100px,100%);
+            margin: 55px auto 0;
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(212,175,55,0.12),
+                    rgba(100,20,20,0.12)
+                );
+
+            border: 1px solid rgba(212,175,55,0.35);
+        }
+
+        .important-box h2 {
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .important-list {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 15px 40px;
+        }
+
+        .important-list div {
+            color: #ddd;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .back-home {
+            display: block;
+            width: fit-content;
+
+            margin: 45px auto 0;
+
+            padding: 14px 25px;
+
+            border-radius: 8px;
+
+            background: #d4af37;
+            color: #160707;
+
+            font-weight: bold;
+        }
+
+        @media (max-width:800px) {
+
+            .safety-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .important-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width:550px) {
+
+            .safety-page {
+                padding: 125px 5% 70px;
+            }
+
+            .safety-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .important-box {
+                padding: 25px 20px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="index.html" class="brand">
+
+            <div class="brand-logo">
+                <img src="images/nammakadailogo.jpg" alt="Logo">
+            </div>
+
+            <div class="brand-name">
+                <strong>CRACKERS</strong>
+                <span>STORE</span>
+            </div>
+
+        </a>
+
+
+        <nav class="desktop-nav">
+
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="safety.html">Safety Tips</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+
+        </nav>
+
+
+        <button class="menu-button" id="menuButton">
+            ☰
+        </button>
+
+    </div>
+
+
+    <div class="mobile-menu" id="mobileMenu">
+
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="safety.html">Safety Tips</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+
+    </div>
+
+</header>
+
+
+<main class="safety-page">
+
+
+    <div class="safety-header">
+
+        <span>SAFETY FIRST</span>
+
+        <h1>
+            Celebrate <em>Responsibly</em>
+        </h1>
+
+        <p>
+            Enjoy festive celebrations responsibly.
+            Always follow the instructions provided with
+            each product and make safety a priority.
+        </p>
+
+    </div>
+
+
+    <div class="safety-grid">
+
+
+        <div class="safety-card">
+
+            <div class="safety-card-icon">📖</div>
+
+            <h3>Follow Instructions</h3>
+
+            <p>
+                Read and follow the safety instructions
+                printed on the product packaging before use.
+            </p>
+
+        </div>
+
+
+        <div class="safety-card">
+
+            <div class="safety-card-icon">👨‍👩‍👧</div>
+
+            <h3>Adult Supervision</h3>
+
+            <p>
+                Children should never handle fireworks
+                without close supervision from a responsible adult.
+            </p>
+
+        </div>
+
+
+        <div class="safety-card">
+
+            <div class="safety-card-icon">🏠</div>
+
+            <h3>Choose a Safe Area</h3>
+
+            <p>
+                Use only in an appropriate open area away
+                from buildings, vehicles and other hazards.
+            </p>
+
+        </div>
+
+
+        <div class="safety-card">
+
+            <div class="safety-card-icon">💧</div>
+
+            <h3>Keep Water Nearby</h3>
+
+            <p>
+                Keep water or an appropriate fire-safety
+                resource nearby.
+            </p>
+
+        </div>
+
+
+        <div class="safety-card">
+
+            <div class="safety-card-icon">🚫</div>
+
+            <h3>Never Re-light</h3>
+
+            <p>
+                Never try to relight or handle a product
+                that did not function as expected.
+            </p>
+
+        </div>
+
+
+        <div class="safety-card">
+
+            <div class="safety-card-icon">👕</div>
+
+            <h3>Suitable Clothing</h3>
+
+            <p>
+                Choose comfortable clothing and keep
+                a safe distance during celebrations.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="important-box">
+
+        <h2>
+            🛡️ Important Safety Reminders
+        </h2>
+
+        <div class="important-list">
+
+            <div>✓ Always follow the product label and local rules.</div>
+
+            <div>✓ Keep spectators at a safe distance.</div>
+
+            <div>✓ Keep children supervised by responsible adults.</div>
+
+            <div>✓ Keep pets safely indoors during celebrations.</div>
+
+            <div>✓ Do not use fireworks indoors.</div>
+
+            <div>✓ Do not carry fireworks in pockets or clothing.</div>
+
+            <div>✓ Never attempt to modify or combine products.</div>
+
+            <div>✓ Dispose of used materials only when completely safe.</div>
+
+        </div>
+
+    </div>
+
+
+    <a href="index.html" class="back-home">
+        ← Back to Home
+    </a>
+
+</main>
+
+
+<script>
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+menuButton.addEventListener("click", function () {
+
+    mobileMenu.classList.toggle("active");
+
+});
+
+mobileMenu.querySelectorAll("a").forEach(function(link) {
+
+    link.addEventListener("click", function() {
+
+        mobileMenu.classList.remove("active");
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

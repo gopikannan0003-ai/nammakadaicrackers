@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Namma Kadai | Premium Crackers</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Kavivanar&display=swap"
+      rel="stylesheet">
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+
+    position: relative !important;
+
+    top: auto !important;
+    left: auto !important;
+
+    width: 100%;
+
+    z-index: 100;
+
+    background: rgba(5, 8, 25, 0.96);
+
+    backdrop-filter: blur(10px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+
+.nav-container {
+
+    width: 100%;
+
+    max-width: 1250px;
+
+    margin: auto;
+
+    min-height: 90px;
+
+    padding: 12px 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    text-decoration: none;
+}
+
+
+.brand-logo img {
+
+    width: 55px;
+
+    height: 55px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 2px solid #fdb913;
+
+    display: block;
+}
+
+
+.brand-name {
+
+    display: flex;
+
+    flex-direction: column;
+
+    line-height: 1;
+}
+
+
+.brand-name strong {
+
+    color: white;
+
+    font-family: 'Comfortaa', sans-serif;
+
+    font-size: 20px;
+
+    letter-spacing: 1px;
+}
+
+
+.brand-name span {
+
+    color: #fdb913;
+
+    font-family: 'Comfortaa', sans-serif;
+
+    font-weight: 700;
+
+    font-size: 17px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =====================================================
+   NAV LINKS (desktop + mobile, always visible)
+===================================================== */
+
+.desktop-nav {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 32px;
+}
+
+
+.desktop-nav a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-family: 'Comfortaa', sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition: 0.3s ease;
+}
+
+
+.desktop-nav a:hover {
+
+    color: #fdb913;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   HERO
+   Full image in center + only 2 buttons over it.
+===================================================== */
+
+.hero {
+
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    background: #080b1d;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.hero-bg-image {
+
+    width: 100%;
+
+    height: auto;
+
+    display: block;
+
+    margin: 0 auto;
+
+    object-fit: contain;
+
+    object-position: center center;
+}
+
+
+.hero-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,0.20) 0%,
+            rgba(0,0,0,0.28) 45%,
+            rgba(0,0,0,0.48) 100%
+        );
+}
+
+
+.hero-buttons {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 2;
+
+    width: 100%;
+
+    padding: 0 15px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+/* =====================================================
+   EXPLORE PRODUCTS
+===================================================== */
+
+.primary-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 220px;
+
+    padding: 17px 30px;
+
+    border-radius: 50px;
+
+    background: #fdb913;
+
+    color: #14122b;
+
+    text-decoration: none;
+
+    font-family: 'Comfortaa', sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.45);
+
+    transition: all 0.3s ease;
+}
+
+
+.primary-button:hover {
+
+    background: white;
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.55);
+}
+
+
+/* =====================================================
+   VIEW CATEGORIES
+===================================================== */
+
+.secondary-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 210px;
+
+    padding: 15px 30px;
+
+    border-radius: 50px;
+
+    border: 2px solid white;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-family: 'Comfortaa', sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    background: rgba(0,0,0,0.25);
+
+    transition: all 0.3s ease;
+}
+
+
+.secondary-button:hover {
+
+    background: white;
+
+    color: #14122b;
+
+    transform: translateY(-4px);
+}
+
+
+/* =====================================================
+   OLD FLOATING CARD HIDDEN
+===================================================== */
+
+.hero-right {
+
+    display: none !important;
+}
+
+
+/* =====================================================
+   TRUST BAR
+===================================================== */
+
+.trust-bar {
+
+    position: relative;
+
+    z-index: 5;
+}
+
+
+/* =====================================================
+   CONTACT SECTION
+===================================================== */
+
+.contact-section {
+
+    width: 100%;
+
+    padding: 80px 25px;
+
+    background: #080b1d;
+
+    text-align: center;
+}
+
+
+.contact-heading span {
+
+    display: block;
+
+    color: #fdb913;
+
+    font-family: 'Comfortaa', sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+}
+
+
+.contact-heading h2 {
+
+    margin: 0 0 12px;
+
+    color: white;
+
+    font-family: 'Comfortaa', sans-serif;
+
+    font-size: clamp(28px, 5vw, 42px);
+}
+
+
+.contact-heading h2 em {
+
+    color: #fdb913;
+
+    font-style: normal;
+}
+
+
+.contact-heading p {
+
+    max-width: 600px;
+
+    margin: 0 auto 40px;
+
+    color: rgba(255,255,255,0.8);
+
+    font-family: 'Comfortaa', sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+.contact-grid {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+
+    gap: 20px;
+}
+
+
+.contact-card {
+
+    display: block;
+
+    padding: 28px 20px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.06);
+
+    border: 1px solid rgba(253,185,19,0.35);
+
+    color: white;
+
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+
+a.contact-card:hover {
+
+    transform: translateY(-5px);
+
+    background: rgba(253,185,19,0.12);
+}
+
+
+.contact-icon {
+
+    font-size: 32px;
+
+    margin-bottom: 12px;
+}
+
+
+.contact-card h3 {
+
+    margin: 0 0 8px;
+
+    color: #fdb913;
+
+    font-family: 'Comfortaa', sans-serif;
+
+    font-size: 18px;
+}
+
+
+.contact-card p {
+
+    margin: 0;
+
+    color: white;
+
+    font-family: 'Comfortaa', sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    word-break: break-word;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+
+    padding: 22px 15px;
+
+    background: #04061a;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+
+.footer p {
+
+    margin: 0;
+
+    color: rgba(255,255,255,0.75);
+
+    font-family: 'Comfortaa', sans-serif;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   MOBILE
+   Nav links always visible, bigger and neat.
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .nav-container {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        min-height: 0;
+
+        padding: 10px 12px 10px;
+    }
+
+
+    .brand-logo img {
+
+        width: 44px;
+
+        height: 44px;
+    }
+
+
+    .brand-name strong {
+
+        font-size: 16px;
+    }
+
+
+    .brand-name span {
+
+        font-size: 13px;
+    }
+
+
+    .desktop-nav {
+
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 6px 16px;
+
+        padding-top: 10px;
+
+        border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+
+    .desktop-nav a {
+
+        font-size: 14px;
+
+        padding: 4px 2px;
+    }
+
+
+    .hero-buttons {
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+
+    .primary-button,
+    .secondary-button {
+
+        width: 90%;
+
+        max-width: 260px;
+
+        min-width: 0;
+
+        padding: 12px 18px;
+
+        font-size: 14px;
+    }
+
+
+    .contact-section {
+
+        padding: 60px 18px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .desktop-nav {
+
+        gap: 6px 12px;
+    }
+
+
+    .desktop-nav a {
+
+        font-size: 13.5px;
+    }
+
+
+    .primary-button,
+    .secondary-button {
+
+        width: 80%;
+
+        max-width: 220px;
+
+        padding: 10px 14px;
+
+        font-size: 12px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+
+        <a href="index.html" class="brand">
+
+            <div class="brand-logo">
+
+                <img
+                    src="images/nammakadailogo.jpg"
+                    alt="Store Logo"
+                >
+
+            </div>
+
+
+            <div class="brand-name">
+
+                <strong>NAMMA</strong>
+
+                <span>KADAI</span>
+
+            </div>
+
+        </a>
+
+
+
+        <nav class="desktop-nav">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="#categories">
+                Categories
+            </a>
+
+            <a href="pricelist.html">
+                Products
+            </a>
+
+            <a href="safety.html">
+                Safety Tips
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+        </nav>
+
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO / HOME IMAGE
+     (Only image + 2 buttons)
+===================================================== -->
+
+<section class="hero">
+
+
+    <img
+        src="images/kadai.jpg"
+        alt="Namma Kadai Premium Crackers"
+        class="hero-bg-image"
+    >
+
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-buttons">
+
+        <a
+            href="pricelist.html"
+            class="primary-button"
+        >
+
+            Explore Products →
+
+        </a>
+
+
+        <a
+            href="#categories"
+            class="secondary-button"
+        >
+
+            View Categories
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TRUST BAR
+===================================================== -->
+
+<section class="trust-bar">
+
+    <div class="trust-item">
+
+        <strong>
+            130+
+        </strong>
+
+        <span>
+            Products
+        </span>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <strong>
+            Premium
+        </strong>
+
+        <span>
+            Collection
+        </span>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <strong>
+            Quality
+        </strong>
+
+        <span>
+            Selection
+        </span>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <strong>
+            Easy
+        </strong>
+
+        <span>
+            Browsing
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CATEGORIES
+===================================================== -->
+
+<section
+    class="categories-section"
+    id="categories"
+>
+
+    <div class="section-heading">
+
+        <span>
+            EXPLORE
+        </span>
+
+        <h2>
+            Browse By <em>Category</em>
+        </h2>
+
+        <p>
+            Explore our different product categories.
+        </p>
+
+    </div>
+
+
+    <div class="category-grid">
+
+
+        <a
+            href="pricelist.html"
+            class="category-card"
+        >
+
+            <div class="category-icon">
+                ✦
+            </div>
+
+            <h3>
+                Crackers
+            </h3>
+
+            <p>
+                Traditional collection
+            </p>
+
+        </a>
+
+
+
+        <a
+            href="pricelist.html"
+            class="category-card"
+        >
+
+            <div class="category-icon">
+                ✧
+            </div>
+
+            <h3>
+                Flower Pots
+            </h3>
+
+            <p>
+                Beautiful collection
+            </p>
+
+        </a>
+
+
+
+        <a
+            href="pricelist.html"
+            class="category-card"
+        >
+
+            <div class="category-icon">
+                ★
+            </div>
+
+            <h3>
+                Rockets
+            </h3>
+
+            <p>
+                Premium collection
+            </p>
+
+        </a>
+
+
+
+        <a
+            href="pricelist.html"
+            class="category-card"
+        >
+
+            <div class="category-icon">
+                ◆
+            </div>
+
+            <h3>
+                Fancy
+            </h3>
+
+            <p>
+                Special collection
+            </p>
+
+        </a>
+
+
+
+        <a
+            href="pricelist.html"
+            class="category-card"
+        >
+
+            <div class="category-icon">
+                ✹
+            </div>
+
+            <h3>
+                Shots
+            </h3>
+
+            <p>
+                Multi-shot collection
+            </p>
+
+        </a>
+
+
+
+        <a
+            href="pricelist.html"
+            class="category-card"
+        >
+
+            <div class="category-icon">
+                🎁
+            </div>
+
+            <h3>
+                Gift Boxes
+            </h3>
+
+            <p>
+                Festival collection
+            </p>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SAFETY
+===================================================== -->
+
+<section class="safety-preview">
+
+    <div class="safety-preview-content">
+
+        <span class="section-label">
+            SAFETY FIRST
+        </span>
+
+
+        <h2>
+            Celebrate <em>Responsibly</em>
+        </h2>
+
+
+        <p>
+
+            A beautiful celebration is even better
+            when everyone stays safe. Check our simple
+            safety guidelines before enjoying festive
+            celebrations.
+
+        </p>
+
+
+        <a
+            href="safety.html"
+            class="safety-button"
+        >
+
+            View Safety Tips →
+
+        </a>
+
+    </div>
+
+
+    <div class="safety-preview-box">
+
+        <div class="safety-icon">
+            🛡️
+        </div>
+
+
+        <h3>
+            Safety Comes First
+        </h3>
+
+
+        <p>
+
+            Follow product instructions and keep
+            children supervised by responsible adults.
+
+        </p>
+
+
+        <div class="mini-safety-list">
+
+            <span>
+                ✓ Follow instructions
+            </span>
+
+            <span>
+                ✓ Keep a safe area
+            </span>
+
+            <span>
+                ✓ Keep water nearby
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section
+    class="about-section"
+    id="about"
+>
+
+    <div class="about-image">
+
+        <img
+            src="images/nammakadaihome.jpg"
+            alt="Collection"
+        >
+
+    </div>
+
+
+    <div class="about-content">
+
+        <span class="section-label">
+            ABOUT OUR STORE
+        </span>
+
+
+        <h2>
+            Celebration <em>Starts Here</em>
+        </h2>
+
+
+        <p>
+
+            Welcome to our premium festive product
+            catalogue. We bring together a wide
+            collection of products in one simple
+            and attractive place.
+
+        </p>
+
+
+        <p>
+
+            Browse our collection, explore different
+            categories and discover products that make
+            celebrations memorable.
+
+        </p>
+
+
+        <div class="about-features">
+
+
+            <div>
+
+                <strong>
+                    130+
+                </strong>
+
+                <span>
+                    Products
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    9+
+                </strong>
+
+                <span>
+                    Categories
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    Premium
+                </strong>
+
+                <span>
+                    Collection
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <a
+            href="pricelist.html"
+            class="about-button"
+        >
+
+            View All Products →
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta-section">
+
+    <div class="cta-content">
+
+        <span>
+            DISCOVER OUR COLLECTION
+        </span>
+
+
+        <h2>
+            Find Something <em>Special</em>
+        </h2>
+
+
+        <p>
+            Explore our complete catalogue
+            and discover our collection.
+        </p>
+
+
+        <a
+            href="pricelist.html"
+            class="cta-button"
+        >
+
+            Explore Products →
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT DETAILS
+     (Replace example details with your real details)
+===================================================== -->
+
+<section
+    class="contact-section"
+    id="contact"
+>
+
+    <div class="contact-heading">
+
+        <span>
+            CONTACT US
+        </span>
+
+        <h2>
+            Get In <em>Touch</em>
+        </h2>
+
+        <p>
+            Visit our shop or contact us for orders
+            and enquiries. We are happy to help you.
+        </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+
+        <!-- PHONE -->
+
+        <a
+            href="tel:+919876543210"
+            class="contact-card"
+        >
+
+            <div class="contact-icon">
+                📞
+            </div>
+
+            <h3>
+                Call Us
+            </h3>
+
+            <p>
+                +91 98765 43210
+            </p>
+
+        </a>
+
+
+
+        <!-- WHATSAPP -->
+
+        <a
+            href="https://wa.me/919876543210"
+            target="_blank"
+            rel="noopener"
+            class="contact-card"
+        >
+
+            <div class="contact-icon">
+                💬
+            </div>
+
+            <h3>
+                WhatsApp
+            </h3>
+
+            <p>
+                +91 98765 43210
+            </p>
+
+        </a>
+
+
+
+        
+
+
+        <!-- ADDRESS -->
+
+        <div class="contact-card">
+
+            <div class="contact-icon">
+                📍
+            </div>
+
+            <h3>
+                Our Shop
+            </h3>
+
+            <p>
+                Namma Kadai,<br>
+                Thayilpatti,sivakasi<br>
+                Tamil Nadu - India
+            </p>
+
+        </div>
+
+
+
+        
